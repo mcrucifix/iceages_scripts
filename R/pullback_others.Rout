@@ -1,0 +1,182 @@
+
+R version 2.15.2 (2012-10-26) -- "Trick or Treat"
+Copyright (C) 2012 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+Platform: x86_64-apple-darwin10.8.0/x86_64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> require(iceages)
+Loading required package: iceages
+> 
+> Astro = read_astro(34,34)
+> times = seq(-80,0,0.1)
+> data(models)
+> 
+> PULL <- list()
+> 
+>  for (modelname in c('pp04','pp12','t06','i11','s90','s91'))
++  {
++    fullmodelname = paste(modelname,"_d",sep="")
++    cat(sprintf("handling model %s \n", fullmodelname))
++    model <- models[[fullmodelname]]
++    print(model)
++ 
++    PULL[[modelname]] <- pullback_d (model, par=model$spar, t_back = -500, 
++                                     times=times, Astro, deltat=0.01)
++    attr(PULL[[modelname]], "name") <-  toupper(modelname)
++  }
+handling model pp04_d 
+$func
+[1] "pp04_f"
+
+$name
+[1] "Paillard - Parrenin 2004"
+
+$spar
+gamma omega alpha     d    aa    bb 
+ 1.00  1.00  0.15  0.27  0.40  0.70 
+
+$initgrid
+$initgrid$x
+[1] -1.0 -0.5  0.0  0.5  1.0
+
+$initgrid$y
+[1] -1.0 -0.5  0.0  0.5  1.0
+
+$initgrid$z
+[1] -1.0 -0.5  0.0  0.5  1.0
+
+
+attractor 1 
+handling model pp12_d 
+$func
+[1] "pp12_f"
+
+$name
+[1] "Parrenin and Paillard, 2012"
+
+$spar
+gamma omega 
+    1     1 
+
+$initgrid
+$initgrid$x
+ [1]   0   3   6   9  12  15  18  21  24  27  30  33  36  39  42  45  48  51  54
+[20]  57  60  63  66  69  72  75  78  81  84  87  90  93  96  99 102 105 108 111
+[39] 114 117 120
+
+$initgrid$y
+[1] 0 1
+
+
+attractor 1 
+handling model t06_d 
+$func
+[1] "t06_f"
+
+$name
+[1] "Tziperman et al. 2006"
+
+$spar
+gamma omega    p0     s    sm 
+ 1.00  1.00  0.26  0.23  0.03 
+
+$initgrid
+$initgrid$x
+ [1]  0  2  4  6  8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40 42 44 46 48
+[26] 50 52 54 56 58 60
+
+$initgrid$y
+[1] 0 1
+
+
+attractor 1 
+handling model i11_d 
+$func
+[1] "i11_f"
+
+$name
+[1] "Imbrie et al. 2011"
+
+$spar
+gamma omega 
+    1     1 
+
+$initgrid
+$initgrid$x
+ [1] -1.200000e+00 -1.000000e+00 -8.000000e-01 -6.000000e-01 -4.000000e-01
+ [6] -2.000000e-01  2.220446e-16  2.000000e-01  4.000000e-01  6.000000e-01
+[11]  8.000000e-01  1.000000e+00  1.200000e+00
+
+$initgrid$y
+ [1] -1.200000e+00 -1.000000e+00 -8.000000e-01 -6.000000e-01 -4.000000e-01
+ [6] -2.000000e-01  2.220446e-16  2.000000e-01  4.000000e-01  6.000000e-01
+[11]  8.000000e-01  1.000000e+00  1.200000e+00
+
+
+attractor 1 
+handling model s90_d 
+$func
+[1] "s90_f"
+
+$name
+[1] "Saltzman - Maasch 1990"
+
+$spar
+gamma omega     w 
+  1.0   1.0   0.5 
+
+$initgrid
+$initgrid$x
+[1] -1.0 -0.5  0.0  0.5  1.0
+
+$initgrid$y
+[1] -1.0 -0.5  0.0  0.5  1.0
+
+$initgrid$z
+[1] -1.0 -0.5  0.0  0.5  1.0
+
+
+attractor 1 
+attractor 2 
+attractor 3 
+handling model s91_d 
+$func
+[1] "s91_f"
+
+$name
+[1] "Saltzman - Maasch 1991"
+
+$spar
+gamma omega 
+    1     1 
+
+$initgrid
+$initgrid$x
+[1] -1.0 -0.5  0.0  0.5  1.0
+
+$initgrid$y
+[1] -1.0 -0.5  0.0  0.5  1.0
+
+$initgrid$z
+[1] -1.0 -0.5  0.0  0.5  1.0
+
+
+attractor 1 
+> 
+> save(file='pullback_others.RData', PULL)
+> 
+> proc.time()
+   user  system elapsed 
+  9.132   0.070   9.208 
