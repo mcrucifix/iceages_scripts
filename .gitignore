@@ -4,3 +4,11 @@
 *.swp
 *.RData
 *.pdf
+
+*.dat
+
+R/.Rhistory
+
+*.svg
+
+*.Rout
