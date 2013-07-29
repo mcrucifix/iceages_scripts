@@ -54,6 +54,10 @@ for i,ax in enumerate(axes):
   axes[i].tick_params(axis='x',direction='out')
   axes[i].set_title(titles[i])
   axes[i].plot([1],[1], 'p', color='orange')
+  # needed a bit of thinking, but finally got it: 
+  # extracts attribute to get consistent titile
+  # without risk of error
+  axes[i].set_title(robjects.r.attr(KList[i],"name")[0])
 #plt.show()
 
   axes[0].set_xlim(( 0.5 , 1.5 )) 

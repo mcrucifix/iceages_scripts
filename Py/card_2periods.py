@@ -39,16 +39,16 @@ print(robjects.r.load (Rfile))
 KList = robjects.r('KList')
 K = KList[1]
  
-pcard(K, ax, cols)
+pcard(K, ax, cols, scalex=10)
 ax.set_xlabel("$\\tau$", fontsize=18)
 ax.set_ylabel("$\\gamma$", fontsize=18, rotation='horizontal')
-ax.set_xlim((0.7, 5.))
-fig.suptitle("Quasi-periodic forcing ($P_1$ and $E_1$)")
+ax.set_xlim((7, 50.))
+fig.suptitle("Quasi-periodic forcing ($P_1$ and $O_1$)")
 ax.tick_params(axis='x',direction='out')
 
-add_second_axis(ax, 40, 2.7436 / 2.371600 , "$P_N / P_1$")
-add_second_axis(ax, 80, 2.7436 / 4.100000 , "$P_N / E_1$")
+add_second_axis(ax, 40, 2.7436 / 23.71600 , "$P_N / P_1$")
+add_second_axis(ax, 80, 2.7436 / 41.00000 , "$P_N / O_1$")
 
-ax.plot([3.6, 4.1, 4.4],[0.6,0.6,0.6], 'p', color='orange')
+ax.plot([36, 41, 44],[0.6,0.6,0.6], 'p', color='orange')
 plt.savefig('card_2periods.pdf')
 

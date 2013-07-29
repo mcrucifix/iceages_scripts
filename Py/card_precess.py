@@ -39,16 +39,16 @@ print(robjects.r.load (Rfile))
 KList = robjects.r('KList')
 K = KList[2]
  
-pcard(K, ax, cols)
+pcard(K, ax, cols, scalex=10)
 ax.set_xlabel("$\\tau$", fontsize=18)
 ax.set_ylabel("$\\gamma$", fontsize=18, rotation='horizontal')
-ax.set_xlim((0.7, 5.))
+ax.set_xlim((7, 50.))
 fig.suptitle("2-period forcing ($P_2$ and $P_3$)")
 ax.tick_params(axis='x',direction='out')
 
-add_second_axis(ax, 40, 2.7436 / 2.242800 , "$P_N / P_2$")
-add_second_axis(ax, 80, 2.7436 / 1.897600 , "$P_N / P_3$")
-add_second_axis(ax, 10, 2.7436 / 12.32970 , "$P_N / E_3$", pos='top', dir='inward' )
+add_second_axis(ax, 40, 2.7436 / 22.42800 , "$P_N / P_2$")
+add_second_axis(ax, 80, 2.7436 / 18.97600 , "$P_N / P_3$")
+add_second_axis(ax, 10, 2.7436 / 123.2970 , "$P_N / E_3$", pos='top', dir='inward' )
 
 #clegend(cols, bbox=(0.10, 0.70, .3, .402))
 

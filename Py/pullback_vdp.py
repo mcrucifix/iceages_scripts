@@ -32,7 +32,7 @@ from matplotlib import colors
 import itertools
 
 from rpy2 import robjects
-file='pullback_11'
+file='pullback_34'
 
 
 fig,ax = plt.subplots(nrows=3,ncols=1)
@@ -49,12 +49,13 @@ clr = itertools.cycle(('red','green'))
 
 for Y in p41:
   Y = np.array(Y)[:,0]
-  ax[0].plot(times,Y, linewidth=1, color=clr.next())
-  ax[1].plot(times,Y,'-', linewidth=0.2, color=clr.next())
-  ax[2].plot(times,Y,'-', linewidth=0.2, color=clr.next())
+  c = clr.next();
+  ax[0].plot(times,Y, linewidth=1.2, color=c)
+  ax[1].plot(times,Y,'-', linewidth=0.5, color=c)
+  ax[2].plot(times,Y,'-', linewidth=0.5, color=c)
 
-ax[2].plot(times,np.array(s41)[:,0], linewidth=1, color='black')
-ax[1].plot(times,np.array(p40)[:,0], linewidth=1, color='black')
+ax[2].plot(times,np.array(s41)[:,0], linewidth=1.2, color='black')
+ax[1].plot(times,np.array(p40)[:,0], linewidth=1.2, color='black')
 
 ax[0].set_title('pullback attractors $\\tau=41\,\\mathrm{ka}$')
 ax[2].set_title('one stochastic realisation  $\\tau=41\,\\mathrm{ka}$')
@@ -68,7 +69,7 @@ for j in range(3):
 
 ax[2].set_xlabel('time [kyr]')
 
-fig.savefig('pullback_vdp.pdf')
+fig.savefig('../Pdf/pullback_vdp_34.pdf')
 
 
 

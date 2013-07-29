@@ -31,7 +31,8 @@ import matplotlib.pyplot as plt
 '''mostly written like bifurc_11.py'''
 
 from rpy2 import robjects
-print(robjects.r.load ('../RData/LB_34_34_Gamma20_fast.RData'))
+#print(robjects.r.load ('../RData/LB_34_34_Gamma20_fast.RData'))
+print(robjects.r.load ('../RData/LB_34_34_Gamma10_times20_10_0.RData'))
 LB = robjects.r('LB')
  
 Omegas = np.array(robjects.r('Omegas'))*10.
@@ -42,7 +43,8 @@ for i,L in enumerate(LB):
   for j,S in enumerate(L):
     for k in range(2): 
       M = np.matrix(S).transpose()
-      axes[k].scatter (Omegas[i],M[k,0],marker=',',edgecolors='None',s=2., color='b')
+      axes[k].scatter (Omegas[i],M[k,0],marker=',',edgecolors='None',s=2., color='g')
+      axes[k].scatter (Omegas[i],M[k,1],marker=',',edgecolors='None',s=2., color='r')
       for x in [36,41,44]: axes[k].axvline(x,linestyle='--', color='gray')
 
 for ax in axes: ax.set_xlim((Omegas.min(), Omegas.max()))
@@ -51,5 +53,5 @@ axes[0].set_ylabel("x")
 axes[1].set_ylabel("y")
 axes[1].set_xlabel("$\\tau$ [ka]")
 fig.set_size_inches(6,6)
-fig.suptitle("Pullback sections at t=0Ma \n Full astronomical forcing")
-fig.savefig('bifurc_34_tau_2_fast.pdf')
+fig.suptitle("Pullback sections at t=0\,ka \n Full astronomical forcing")
+fig.savefig('bifurc_34_t_all.pdf')

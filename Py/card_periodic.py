@@ -38,12 +38,12 @@ Rfile='Klist_vdp.RData'
 print(robjects.r.load (Rfile))
 K = robjects.r('KList[["periodic"]]')
  
-pcard(K, ax, cols)
+pcard(K, ax, cols, scalex=10)
 ax.set_xlabel("$\\tau$", fontsize=18)
 ax.set_ylabel("$\\gamma$", fontsize=18, rotation='horizontal')
 ax.set_title("Periodic forcing ($P_1$)")
 ax.tick_params(axis='x',direction='out')
-add_second_axis(ax, 40, 1.156852, "$P_N / P_1$")
+add_second_axis(ax, 40, 0.1156852, "$P_N / P_1$")
 clegend(cols, bbox=(0.10, 0.70, .3, .402))
 
 

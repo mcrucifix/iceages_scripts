@@ -34,16 +34,16 @@ fig.set_size_inches(7,6)
 ax = fig.add_axes((0.1, 0.2, 0.8, 0.75))
 
 from rpy2 import robjects
-Rfile='Klist_vdp.RData'
+Rfile='../RData/Klist_vdp.RData'
 print(robjects.r.load (Rfile))
 K = robjects.r('KList[["astro"]]')
  
-pcard(K, ax, cols)
+pcard(K, ax, cols, scalex=10)
 ax.set_xlabel("$\\tau$", fontsize=18)
 ax.set_ylabel("$\\gamma$", fontsize=18, rotation='horizontal')
-ax.set_xlim((0.7, 5.))
+ax.set_xlim((7, 50))
 fig.suptitle("Full astronomical forcing")
 ax.tick_params(axis='x',direction='out')
 
 #plt.show()
-plt.savefig('card_full_vdp.pdf')
+plt.savefig('../Pdf/card_full_vdp.pdf')

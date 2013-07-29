@@ -38,7 +38,7 @@ from matplotlib import mpl
 from matplotlib import colors
 
 
-def pcard(K, ax, cols):
+def pcard(K, ax, cols, scalex=1):
   ''' main routine drawing the diagram '''
   ''' into axes '''
   ''' K  : matrix generated in R '''
@@ -46,7 +46,7 @@ def pcard(K, ax, cols):
   ''' col : array of colors, corresponding to  '''
   '''       0,1,2  etc pullback solutions '''
 
-  x = np.array(K[K.names.index('x')])
+  x = np.array(K[K.names.index('x')])*scalex
   y = np.array(K[K.names.index('y')])
   z = np.matrix(K[K.names.index('z')]).transpose()
    
@@ -84,12 +84,12 @@ def prayleigh (Rfile, ax):
   from rpy2 import robjects
   robjects.r.load(Rfile)
   K = robjects.r('KK')
-  x = np.array(K[0])
+  x = np.array(K[0])*10
   y = np.array(K[1])
   z = np.array(K[2]).transpose()
  
   cntrset = ax.contourf(x,y,z,levels=[0.95,9999], 
-            colors=('black','black'), alpha=0.5)
+            colors=('black','black'), alpha=0.5, linewidth=0.01)
 
   # convert to hatches
   from matplotlib.patches import PathPatch
@@ -103,7 +103,7 @@ def prayleigh (Rfile, ax):
     for p in patches:
       p.set_fc("None")
       p.set_ec("black")
-      p.set_hatch("/")
+      p.set_hatch("//////")
       ax.add_patch(p)
  
 def add_second_axis(ax, shift, ratio, label, pos='bottom', dir='outward'):

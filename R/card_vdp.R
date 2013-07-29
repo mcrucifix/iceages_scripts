@@ -59,7 +59,7 @@ rm('tmpalpha')
 ## deltat is adjusted to omega, because
 ## the numerical equations  scale in tame
 
-deltat=0.02*par[,'omega']
+deltat=0.005*par[,'omega']
 
 # we are here pretty ambitious, we use
 # tback = - 10 Ma ( = -1000 * 10 ka )
@@ -83,7 +83,7 @@ KList <- list()
 Astro <- read_astro(1,0)
 count <- compute_cluster(model, par, tback=t_back, t0=t0, 
                           Astro=Astro, ncores=NCORES, deltat=deltat)
-count <- list(x=omega, y=gamma, z=t(matrix(count, length(gamma), length(omega))))
+count <- list(x=omega, y=gamma, z=matrix(count), length(omega), length(gamma))
 attr(count,"name") <- "Periodic forcing ($P_1$)"
 KList[["periodic"]] <- count 
 
@@ -93,7 +93,7 @@ KList[["periodic"]] <- count
 Astro <- read_astro(1,1)
 count <- compute_cluster(model, par, tback=t_back, t0=t0, 
                           Astro=Astro, ncores=NCORES, deltat=deltat)
-count <- list(x=omega, y=gamma, z=t(matrix(count, length(gamma), length(omega))))
+count <- list(x=omega, y=gamma, z=matrix(count, length(omega), length(gamma)))
 attr(count,"name") <- "Quasi-periodic forcing ($P_1$ and $E_1$)"
 KList[["2periods"]] <- count 
 
@@ -106,7 +106,7 @@ for (j in c('amppre','omepre','angpre'))  Astro[[j]] <- Astro[[j]][c(2,3)]
 
 count <- compute_cluster(model, par, tback=t_back, t0=t0, 
                           Astro=Astro, ncores=NCORES, deltat=deltat)
-count <- list(x=omega, y=gamma, z=t(matrix(count, length(gamma), length(omega))))
+count <- list(x=omega, y=gamma, z=matrix(count, length(omega), length(gamma)))
 attr(count,"name") <- "2-period forcing ($P_2$ and $P_3$)"
 KList[["precess"]] <- count 
 
@@ -114,7 +114,7 @@ KList[["precess"]] <- count
 Astro <- read_astro(34,34)
 count <- compute_cluster(model, par, tback=t_back, t0=t0, 
                           Astro=Astro, ncores=NCORES, deltat=deltat)
-count <- list(x=omega, y=gamma, z=t(matrix(count, length(gamma), length(omega))))
+count <- list(x=omega, y=gamma, z=matrix(count, length(omega), length(gamma)))
 attr(count,"name") <- "Full astronomical forcing"
 KList[["astro"]] <- count 
 

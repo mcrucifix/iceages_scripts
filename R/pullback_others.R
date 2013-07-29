@@ -13,9 +13,9 @@ PULL <- list()
    model <- models[[fullmodelname]]
    print(model)
 
-   PULL[[modelname]] <- pullback_d (model, par=model$spar, t_back = -500, 
+   PULL[[modelname]] <- pullback_d (model, par=model$spar, t_back = -2000, 
                                     times=times, Astro, deltat=0.01)
    attr(PULL[[modelname]], "name") <-  toupper(modelname)
  }
 
-save(file='pullback_others.RData', PULL)
+save(file='RData/pullback_others.RData', PULL)

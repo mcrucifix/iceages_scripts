@@ -46,7 +46,7 @@ parvdps = c(alpha=30.0, beta=0.7,  gammapre=0.6, gammaobl=0.6,
 # we do this rather than using the convenient 'pullaback_d' because
 # we want to be able to restart from the same IC with the stochastic model
 
-init <- basin(models$vdp_d, par=parvdp, -500., 0, Astro=Astro)$clusters
+init <- basin(models$vdp_d, par=parvdp, -700., 0, Astro=Astro)$clusters
 
 p41 <- list()
 for (i in seq(nrow(init)))
